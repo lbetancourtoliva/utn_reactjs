@@ -3,8 +3,8 @@ import Registro from './Registro'
 
 function App() {
   return (
-    <div className="App">
-      <h2>Tp Pagina de Registro</h2> 
+    <div className="app container">
+      <h2>Formulario de Registro</h2>
       <Registro />
     </div>
   );

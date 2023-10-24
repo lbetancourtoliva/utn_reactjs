@@ -1,13 +1,18 @@
+import {BrowserRouter as Router} from 'react-router-dom';
+import NavBar from './components/NavBar';
+import Routing from './config/routing';
 import './App.css';
-import Registro from './Registro'
 
 function App() {
-  return (
-    <div className="app container">
-      <h2>Formulario de Registro</h2>
-      <Registro />
-    </div>
-  );
+    return (
+        <div className="app container">
+            <Router>
+                <NavBar/>
+                <Routing/>
+            </Router>
+        </div>
+    );
 }
 
 export default App;
+

@@ -7,7 +7,7 @@ Trabajo práctico del Módulo 2 (OBLIGATORIO)
 
 Desarrollar un pequeño ecommerce con las siguientes paginas
 
-    Registro
+    Registrationold
         Solo realizar maquetado, no se debe guardar el usuario en ninguna base de datos
     Login
         Solo realizar maquetado, no se debe guardar el usuario en ninguna base de datos

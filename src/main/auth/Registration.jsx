@@ -15,7 +15,6 @@ function Registration() {
         }
     );
     const handleSubmit = (event) => {
-        console.log("handleSubmit", form);
         event.preventDefault();
         event.stopPropagation();
         alert(`Registro enviado exitosamente!`)

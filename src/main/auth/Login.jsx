@@ -22,7 +22,7 @@ function Login() {
     }
 
     return (
-        <div>
+        <div className="app">
             <Form onSubmit={handleSubmit}>
                 <div className="row">
                     <Form.Group className="col-xs-12 col-md-6 offset-xs-0 offset-md-3" controlId="formBasicName">

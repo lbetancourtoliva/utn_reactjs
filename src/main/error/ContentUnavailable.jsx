@@ -1,6 +1,6 @@
 function ContentUnavailable(){
     return(
-        <div>
+        <div className="app">
             NotFound
         </div>
     )

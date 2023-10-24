@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import {getProductById} from '../../services/ProductService';
 import Loading from '../../components/Loading';
@@ -27,19 +27,23 @@ function Product() {
 
     if (isLoading) {
         return (
-            <div>
+            <div className="app">
                 <Loading/>
             </div>
         )
     } else {
         return (
-            <div>
+            <div className="app">
                 <h1>{product.title}</h1>
                 <img src={product.thumbnail} alt=""/>
                 <p>$ {product.price}</p>
                 <Button variant="primary">
                     Comprar
                 </Button>
+                <br/>
+                <Link to="/">
+                    Regresar a la tienda
+                </Link>
             </div>
         )
     }

@@ -7,7 +7,7 @@ function Home(){
     
     return(
         <>
-            <div>
+            <div className="app">
                 <ProductList />
             </div>
         </>

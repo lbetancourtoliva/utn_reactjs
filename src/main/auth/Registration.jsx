@@ -29,6 +29,9 @@ function Registration() {
     return (
         <div className="app">
             <Form onSubmit={handleSubmit}>
+                <div className="row text-center">
+                    <h1 className="col-xs-12">Formulario de Registro</h1>
+                </div>
                 <div className="row">
                     <Form.Group className="col-xs-12 col-md-6 p-3" controlId="formBasicName">
                         <Form.Label>Nombre(s)</Form.Label>

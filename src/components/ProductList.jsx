@@ -26,7 +26,12 @@ function ProductList() {
     if (isLoading) {
         return (
             <div>
-                <Loading/>
+                <h1>{title}</h1>
+                <div className="row">
+                    <div className="col-xs-12">
+                        <Loading/>
+                    </div>
+                </div>
             </div>
         )
     } else {

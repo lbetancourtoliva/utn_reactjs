@@ -24,6 +24,9 @@ function Login() {
     return (
         <div className="app">
             <Form onSubmit={handleSubmit}>
+                <div className="row text-center">
+                    <h1 className="col-xs-12">Credenciales</h1>
+                </div>
                 <div className="row">
                     <Form.Group className="col-xs-12 col-md-6 offset-xs-0 offset-md-3" controlId="formBasicName">
                         <Form.Label>Usuario</Form.Label>

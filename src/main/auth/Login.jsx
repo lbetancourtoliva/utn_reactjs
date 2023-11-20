@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
-import {useHistory} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import firebase from '../../config/firebase';
 import Loading from '../../components/Loading';
 
 function Login() {
-    const history = useHistory();
     const [isLoading, setIsLoading] = useState(false);
     const [form, setForm] = useState(
         {
@@ -17,9 +15,8 @@ function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
         event.stopPropagation();
-        firebase.auth.signInWithEmailAndPassword(form.username, form.password)
+        firebase.auth().signInWithEmailAndPassword(form.username, form.password)
             .then((res) => {
-                history.push('/');
                 setIsLoading(false);
             })
             .catch((err) => {
@@ -43,7 +40,7 @@ function Login() {
                 <div className="row">
                     <Form.Group className="col-xs-12 col-md-6 offset-xs-0 offset-md-3" controlId="formBasicName">
                         <Form.Label>Usuario</Form.Label>
-                        <Form.Control type="text" name="name" value={form.username} onChange={handleChange}/>
+                        <Form.Control type="text" onChange={handleChange}/>
                     </Form.Group>
                 </div>
                 <div className="row">

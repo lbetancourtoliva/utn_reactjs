@@ -23,9 +23,9 @@ function Registration() {
         event.preventDefault();
         event.stopPropagation();
         setIsLoading(true);
-        firebase.auth.createUserWithEmailAndPassword(form.email, form.password)
+        firebase.auth().createUserWithEmailAndPassword(form.email, form.password)
             .then((res) => {
-                firebase.db.collection("usuarios")
+                firebase.db().collection("usuarios")
                     .add({
                         name: form.name,
                         lastname: form.lastname,

@@ -1,9 +1,14 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
+import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import firebase from '../../config/firebase';
+import Loading from '../../components/Loading';
 
 function Registration() {
+    const [isLoading, setIsLoading] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
     const [form, setForm] = useState(
         {
             name: '',
@@ -17,7 +22,24 @@ function Registration() {
     const handleSubmit = (event) => {
         event.preventDefault();
         event.stopPropagation();
-        alert(`Registro enviado exitosamente!`)
+        setIsLoading(true);
+        firebase.auth.createUserWithEmailAndPassword(form.email, form.password)
+            .then((res) => {
+                firebase.db.collection("usuarios")
+                    .add({
+                        name: form.name,
+                        lastname: form.lastname,
+                        cellphone: form.cellphone,
+                        userId: res.user.uid
+                    })
+                    .then(() => setShowAlert(true))
+                    .catch(er => console.log('Error', er));
+                setIsLoading(false);
+            })
+            .catch((err) => {
+                console.log('Error', err);
+                setIsLoading(false);
+            });
     }
 
     const handleChange = (event) => {
@@ -28,6 +50,10 @@ function Registration() {
 
     return (
         <div className="app">
+            {showAlert &&
+            <Alert key="dark" variant="dark">
+                Registro exitoso!
+            </Alert>}
             <Form onSubmit={handleSubmit}>
                 <div className="row text-center">
                     <h1 className="col-xs-12">Formulario de Registro</h1>
@@ -66,9 +92,11 @@ function Registration() {
                     </Form.Group>
                 </div>
                 <div className="row mt-3">
+                    {!isLoading &&
                     <Button variant="primary" type="submit" className="col-xs-12 col-md-6 offset-xs-0 offset-md-3">
                         Registrar
-                    </Button>
+                    </Button>}
+                    {isLoading && <Loading/>}
                 </div>
                 <div className="row mt-3 text-center">
                     <Link to="/ingresar" className="col-xs-12 col-md-6 offset-xs-0 offset-md-3">
@@ -77,9 +105,7 @@ function Registration() {
                 </div>
             </Form>
         </div>
-
     )
 }
 
-
-export default Registration
+export default Registration;

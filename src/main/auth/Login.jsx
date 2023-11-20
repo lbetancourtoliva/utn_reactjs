@@ -1,8 +1,13 @@
 import React, {useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import firebase from '../../config/firebase';
+import Loading from '../../components/Loading';
 
 function Login() {
+    const history = useHistory();
+    const [isLoading, setIsLoading] = useState(false);
     const [form, setForm] = useState(
         {
             username: '',
@@ -12,7 +17,15 @@ function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
         event.stopPropagation();
-        alert(`Ingreso exitoso!`)
+        firebase.auth.signInWithEmailAndPassword(form.username, form.password)
+            .then((res) => {
+                history.push('/');
+                setIsLoading(false);
+            })
+            .catch((err) => {
+                console.log('Error', err);
+                setIsLoading(false);
+            });
     }
 
     const handleChange = (event) => {
@@ -40,15 +53,16 @@ function Login() {
                     </Form.Group>
                 </div>
                 <div className="row mt-3">
+                    {!isLoading &&
                     <Button variant="primary" type="submit" className="col-xs-12 col-md-6 offset-xs-0 offset-md-3">
                         Ingresar
-                    </Button>
+                    </Button>}
+                    {isLoading && <Loading/>}
                 </div>
             </Form>
         </div>
 
     )
 }
-
 
 export default Login;
